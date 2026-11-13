@@ -1,6 +1,9 @@
 # %% [markdown]
 # # CNN vs ViT robustness under augmentation (CIFAR-10 -> CIFAR-10-C)
-# Shynbergen Yegizbayev, AITU, Computer Vision paper
+# Balakarev Sergey (Project Management & Core Architecture)
+# Sultan Abayev (Backend Development & Data Processing)
+# Erasyl Umirbay (Frontend, Testing & Analytics)
+# Completed tasks and responsibilities: docs/TEAM.md
 #
 # **How to run on Kaggle**
 # 1. Settings (right panel): Accelerator = **GPU T4 x2** (or P100), Internet = **On**.
