@@ -8,11 +8,11 @@ English is the working language for documentation, notebooks, code comments, and
 
 ## Team
 
-| Member | Role |
-|---|---|
-| **Balakarev Sergey** | Project Coordination & Experimental Design |
-| **Sultan Abayev** | Model Training & Data Processing |
-| **Erasyl Umirbay** | Evaluation, Statistical Analysis & Visualization |
+| Member               | Role                                             |
+| -------------------- | ------------------------------------------------ |
+| **Balakarev Sergey** | Project Coordination & Experimental Design       |
+| **Sultan Abayev**    | Model Training & Data Processing                 |
+| **Erasyl Umirbay**   | Evaluation, Statistical Analysis & Visualization |
 
 ### Completed tasks
 
@@ -75,7 +75,7 @@ python -X utf8 scripts/analyze.py results analysis
 python -X utf8 scripts/analyze_v2.py results analysis
 ```
 
-Training requires PyTorch, torchvision, and timm. Before running v2 locally, set `CV_DATA_DIR` to the dataset storage directory; select the model and condition through `CV_MODEL` and `CV_CONDITION`. Library versions are not pinned yet. Repeating a run with the same model, condition, and seed overwrites the corresponding JSON file.
+Training requires PyTorch, torchvision, and timm. Before running v2 locally, set `CV_DATA_DIR` to the dataset storage directory; select the model and condition through `CV_MODEL` and `CV_CONDITION`. Library versions are not pinned yet. Repeating a run with the same model, condition, and seed overwrites the corresponding JSON file..
 
 ## Data and sources
 
