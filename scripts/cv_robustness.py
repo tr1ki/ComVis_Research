@@ -1,8 +1,8 @@
 # %% [markdown]
 # # CNN vs ViT robustness under augmentation (CIFAR-10 -> CIFAR-10-C)
-# Balakarev Sergey (Project Management & Core Architecture)
-# Sultan Abayev (Backend Development & Data Processing)
-# Erasyl Umirbay (Frontend, Testing & Analytics)
+# Balakarev Sergey (Project Coordination & Experimental Design)
+# Sultan Abayev (Model Training & Data Processing)
+# Erasyl Umirbay (Evaluation, Statistical Analysis & Visualization)
 # Completed tasks and responsibilities: docs/TEAM.md
 #
 # **How to run on Kaggle**

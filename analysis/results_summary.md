@@ -48,8 +48,8 @@
 
 ## Team and responsibilities
 
-- **Balakarev Sergey** (Project Management & Core Architecture): experiment planning, comparison protocol, and training/evaluation architecture.
-- **Sultan Abayev** (Backend Development & Data Processing): dataset loading, augmentation, batch processing, GPU job queues, and JSON results.
-- **Erasyl Umirbay** (Frontend, Testing & Analytics): notebook and report presentation, metric checks, statistical analysis, tables, and figures.
+- **Balakarev Sergey** (Project Coordination & Experimental Design): experiment planning, study design, and comparison protocol.
+- **Sultan Abayev** (Model Training & Data Processing): model fine-tuning, dataset loading, augmentation, batch processing, GPU job queues, and JSON results.
+- **Erasyl Umirbay** (Evaluation, Statistical Analysis & Visualization): notebook and report presentation, metric checks, statistical analysis, tables, and figures.
 
 Completed tasks: [docs/TEAM.md](../docs/TEAM.md).

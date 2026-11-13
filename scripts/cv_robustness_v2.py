@@ -1,7 +1,7 @@
 # CNN vs ViT robustness under augmentation (CIFAR-10 -> CIFAR-10-C), version 2.
-# Balakarev Sergey (Project Management & Core Architecture)
-# Sultan Abayev (Backend Development & Data Processing)
-# Erasyl Umirbay (Frontend, Testing & Analytics)
+# Balakarev Sergey (Project Coordination & Experimental Design)
+# Sultan Abayev (Model Training & Data Processing)
+# Erasyl Umirbay (Evaluation, Statistical Analysis & Visualization)
 # Completed tasks and responsibilities: docs/TEAM.md
 # Run by the launcher notebook (run_queue.ipynb); one process = one (MODEL, CONDITION) with 3 seeds.
 # The training recipe is identical to version 1; only models and conditions were added.

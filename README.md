@@ -10,17 +10,17 @@ English is the working language for documentation, notebooks, code comments, and
 
 | Member | Role |
 |---|---|
-| **Balakarev Sergey** | Project Management & Core Architecture |
-| **Sultan Abayev** | Backend Development & Data Processing |
-| **Erasyl Umirbay** | Frontend, Testing & Analytics |
+| **Balakarev Sergey** | Project Coordination & Experimental Design |
+| **Sultan Abayev** | Model Training & Data Processing |
+| **Erasyl Umirbay** | Evaluation, Statistical Analysis & Visualization |
 
 ### Completed tasks
 
-**Balakarev Sergey** handled experiment planning, the shared model comparison protocol, and the training and evaluation architecture.
+**Balakarev Sergey** handled study design, experiment planning and coordination, and the shared model comparison protocol.
 
-**Sultan Abayev** handled dataset loading and preparation, augmentation, batch processing, JSON result storage, and GPU job queues.
+**Sultan Abayev** handled model fine-tuning, dataset loading and preparation, augmentation, batch processing, JSON result storage, and GPU job queues.
 
-**Erasyl Umirbay** handled notebook and result presentation, metric and table checks, statistical analysis, and figures. Frontend work in this project covers the presentation of experiments through notebooks and reports.
+**Erasyl Umirbay** handled notebook and result presentation, metric and table checks, statistical analysis, and figures.
 
 See [docs/TEAM.md](docs/TEAM.md) for the detailed task breakdown.
 
