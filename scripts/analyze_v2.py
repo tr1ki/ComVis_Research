@@ -342,5 +342,10 @@ if all(has(m, c) for m in ["resnet50", "deit_small"] for _, _, c in SENS_ROWS) a
         fig.savefig(os.path.join(OUT, f"fig_sensitivity.{ext}"), dpi=200)
     plt.close(fig)
 
+md += ["", "## Team and responsibilities", "",
+       "- **Balakarev Sergey** (Project Management & Core Architecture): experiment planning, comparison protocol, and training/evaluation architecture.",
+       "- **Sultan Abayev** (Backend Development & Data Processing): dataset loading, augmentation, batch processing, GPU job queues, and JSON results.",
+       "- **Erasyl Umirbay** (Frontend, Testing & Analytics): notebook and report presentation, metric checks, statistical analysis, tables, and figures.",
+       "", "Completed tasks: [docs/TEAM.md](../docs/TEAM.md)."]
 open(os.path.join(OUT, "results_summary_v2.md"), "w").write("\n".join(md) + "\n")
 print("\n".join(md))

@@ -118,6 +118,11 @@ with open(os.path.join(OUT, "results_summary.md"), "w") as f:
     f.write("\n\n## Table 2. Robustness gap = ViT drop − CNN drop (pp; ± is SE of difference); Ratio = CNN drop / ViT drop\n\n" + "\n".join(gap_md))
     f.write("\n\n## Table 3. Change relative to baseline (percentage points)\n\n" + "\n".join(eff_md))
     f.write("\n\n## Table 4. Relative drop per corruption (%, mean over seeds and severities)\n\n" + "\n".join(pc_md) + "\n")
+    f.write("\n## Team and responsibilities\n\n"
+            "- **Balakarev Sergey** (Project Management & Core Architecture): experiment planning, comparison protocol, and training/evaluation architecture.\n"
+            "- **Sultan Abayev** (Backend Development & Data Processing): dataset loading, augmentation, batch processing, GPU job queues, and JSON results.\n"
+            "- **Erasyl Umirbay** (Frontend, Testing & Analytics): notebook and report presentation, metric checks, statistical analysis, tables, and figures.\n\n"
+            "Completed tasks: [docs/TEAM.md](../docs/TEAM.md).\n")
 with open(os.path.join(OUT, "table_main.tex"), "w") as f:
     f.write("\n".join(tex) + "\n")
 with open(os.path.join(OUT, "table_gap.tex"), "w") as f:

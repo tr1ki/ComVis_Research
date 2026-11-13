@@ -64,3 +64,11 @@
 | S | 0.5 | 96.18 | 98.15 | 10.29 | 4.98 | 9.74 | 4.03 | -5.31 [-6.04, -4.58] (74% red.) | 2.07 | -5.71 [-6.11, -5.32] (19% red.) | 2.42 |
 | S | 1 | 95.74 | 98.13 | 8.38 | 4.02 | 8.97 | 3.52 | -4.36 [-4.70, -4.03] (78% red.) | 2.09 | -5.46 [-5.74, -5.17] (22% red.) | 2.55 |
 | S | 1.5 | 95.52 | 98.13 | 8.41 | 3.79 | 9.00 | 3.46 | -4.62 [-5.05, -4.20] (77% red.) | 2.22 | -5.54 [-6.02, -5.06] (21% red.) | 2.60 |
+
+## Team and responsibilities
+
+- **Balakarev Sergey** (Project Management & Core Architecture): experiment planning, comparison protocol, and training/evaluation architecture.
+- **Sultan Abayev** (Backend Development & Data Processing): dataset loading, augmentation, batch processing, GPU job queues, and JSON results.
+- **Erasyl Umirbay** (Frontend, Testing & Analytics): notebook and report presentation, metric checks, statistical analysis, tables, and figures.
+
+Completed tasks: [docs/TEAM.md](../docs/TEAM.md).

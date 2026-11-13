@@ -45,3 +45,11 @@
 | elastic_transform | unseen | 11.8 | 5.6 | 7.7 | 3.7 | 9.0 | 4.3 |
 | pixelate | unseen | 33.2 | 9.2 | 27.1 | 6.3 | 28.1 | 6.8 |
 | jpeg_compression | unseen | 19.9 | 10.2 | 14.6 | 8.4 | 15.6 | 9.0 |
+
+## Team and responsibilities
+
+- **Balakarev Sergey** (Project Management & Core Architecture): experiment planning, comparison protocol, and training/evaluation architecture.
+- **Sultan Abayev** (Backend Development & Data Processing): dataset loading, augmentation, batch processing, GPU job queues, and JSON results.
+- **Erasyl Umirbay** (Frontend, Testing & Analytics): notebook and report presentation, metric checks, statistical analysis, tables, and figures.
+
+Completed tasks: [docs/TEAM.md](../docs/TEAM.md).
