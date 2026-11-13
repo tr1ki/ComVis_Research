@@ -1,71 +1,73 @@
-# CNN vs ViT: устойчивость к искажениям на CIFAR-10-C
+# CNN vs ViT: corruption robustness on CIFAR-10-C
 
-Сравниваем, как аугментации при дообучении влияют на устойчивость CNN и Vision Transformers. В экспериментах участвуют ResNet-50, ConvNeXt-T, DeiT-S и Swin-T с весами ImageNet-1k. Обучение проходит на CIFAR-10, оценка — на исходных изображениях и CIFAR-10-C.
+We study how data augmentation during fine-tuning affects the robustness of CNNs and Vision Transformers. The experiments compare ResNet-50, ConvNeXt-T, DeiT-S, and Swin-T with ImageNet-1k pretrained weights. Models are trained on CIFAR-10 and evaluated on clean images and CIFAR-10-C.
 
-В репозитории сохранены 72 результата: 24 комбинации модели и режима обучения, по три seed на каждую. Датасеты и обученные веса в репозиторий не входят.
+The repository contains 72 results: 24 combinations of model and training condition, with three seeds each. Datasets and fine-tuned weights are not included.
 
-## Команда
+English is the working language for documentation, notebooks, code comments, and reports.
 
-| Участник | Роль |
+## Team
+
+| Member | Role |
 |---|---|
 | **Balakarev Sergey** | Project Management & Core Architecture |
 | **Sultan Abayev** | Backend Development & Data Processing |
 | **Erasyl Umirbay** | Frontend, Testing & Analytics |
 
-### Выполненные задачи
+### Completed tasks
 
-**Balakarev Sergey** — планирование этапов исследования, общий протокол сравнения моделей и архитектура кода обучения и оценки.
+**Balakarev Sergey** handled experiment planning, the shared model comparison protocol, and the training and evaluation architecture.
 
-**Sultan Abayev** — загрузка и подготовка данных, реализация аугментаций, обработка батчей, сохранение метрик в JSON и очередь запусков на GPU.
+**Sultan Abayev** handled dataset loading and preparation, augmentation, batch processing, JSON result storage, and GPU job queues.
 
-**Erasyl Umirbay** — оформление ноутбуков и результатов, проверка метрик и таблиц, статистический анализ и графики. Frontend здесь относится к представлению экспериментов в ноутбуках и отчётах.
+**Erasyl Umirbay** handled notebook and result presentation, metric and table checks, statistical analysis, and figures. Frontend work in this project covers the presentation of experiments through notebooks and reports.
 
-Подробное распределение задач — в [docs/TEAM.md](docs/TEAM.md).
+See [docs/TEAM.md](docs/TEAM.md) for the detailed task breakdown.
 
-## Структура проекта
+## Project structure
 
 ```text
 .
 ├── README.md
 ├── docs/
-│   └── TEAM.md                     # роли и выполненные задачи
+│   └── TEAM.md                     # roles and completed tasks
 ├── notebooks/
-│   ├── round1_single_run.ipynb     # ResNet-50 и DeiT-S: baseline, noise+blur, AugMix
-│   ├── run_A_new_models.ipynb      # ConvNeXt-T и Swin-T
-│   ├── run_B_transfer.ipynb        # перенос между семействами искажений
-│   ├── run_C_probability.ipynb     # вероятность применения аугментаций
-│   └── run_D_intensity.ipynb       # интенсивность аугментаций
+│   ├── round1_single_run.ipynb     # ResNet-50 and DeiT-S: baseline, noise+blur, AugMix
+│   ├── run_A_new_models.ipynb      # ConvNeXt-T and Swin-T
+│   ├── run_B_transfer.ipynb        # transfer across corruption families
+│   ├── run_C_probability.ipynb     # augmentation probability
+│   └── run_D_intensity.ipynb       # augmentation intensity
 ├── scripts/
-│   ├── cv_robustness.py            # первый этап экспериментов
-│   ├── cv_robustness_v2.py         # четыре модели и дополнительные режимы
-│   ├── analyze.py                 # основные таблицы и графики
-│   └── analyze_v2.py              # сравнение четырёх моделей и расширенный анализ
+│   ├── cv_robustness.py            # first round of experiments
+│   ├── cv_robustness_v2.py         # four models and additional conditions
+│   ├── analyze.py                 # main tables and figures
+│   └── analyze_v2.py              # four-model comparison and extended analysis
 ├── results/
-│   └── *.json                     # 72 файла: модель, режим и seed
+│   └── *.json                     # 72 files: model, condition, and seed
 └── analysis/
-    ├── results_summary.md         # основные результаты
-    ├── results_summary_v2.md      # расширенный анализ
+    ├── results_summary.md         # main results
+    ├── results_summary_v2.md      # extended analysis
     ├── table_main.csv
-    └── fig_*.png                  # семь графиков
+    └── fig_*.png                  # seven figures
 ```
 
-## Эксперименты
+## Experiments
 
-Используются модели `resnet50.a1_in1k`, `convnext_tiny.fb_in1k`, `deit_small_patch16_224.fb_in1k` и `swin_tiny_patch4_window7_224.ms_in1k` из `timm`.
+The models come from `timm`: `resnet50.a1_in1k`, `convnext_tiny.fb_in1k`, `deit_small_patch16_224.fb_in1k`, and `swin_tiny_patch4_window7_224.ms_in1k`.
 
-Общий режим дообучения: AdamW, learning rate `1e-4`, weight decay `0.05`, batch size `128`, 6 эпох, warm-up на первых 5% шагов и cosine schedule. Label smoothing — `0.1`, AMP включается на CUDA. Изображения увеличиваются с 32×32 до 224×224 билинейной интерполяцией. Seed: `0`, `1`, `2`.
+All runs use AdamW, a learning rate of `1e-4`, weight decay of `0.05`, batch size `128`, and 6 epochs, with warm-up over the first 5% of steps followed by a cosine schedule. Label smoothing is `0.1`, and AMP is enabled on CUDA. Images are resized from 32×32 to 224×224 using bilinear interpolation. Seeds are `0`, `1`, and `2`.
 
-Для ResNet-50 и DeiT-S проверены baseline (crop + flip), noise+blur (`corrupt_aug`), AugMix, отдельные семейства noise, blur и digital, а также варианты вероятности и интенсивности noise+blur. Для ConvNeXt-T и Swin-T сохранены baseline и `corrupt_aug`. AugMix используется с ограниченным набором операций и без JSD loss.
+ResNet-50 and DeiT-S are evaluated with baseline augmentation (crop + flip), noise+blur (`corrupt_aug`), AugMix, individual noise, blur, and digital families, and variations in noise+blur probability and intensity. ConvNeXt-T and Swin-T have results for baseline and `corrupt_aug`. AugMix uses a restricted set of operations without JSD loss.
 
-Каждый запуск оценивается на 15 искажениях CIFAR-10-C при пяти уровнях силы. Основная метрика — относительное падение точности: `(clean accuracy − corrupted accuracy) / clean accuracy`. Группы seen и unseen обозначают семейства noise+blur и weather+digital относительно режима `corrupt_aug`; тестовые изображения при обучении не используются.
+Each run is evaluated on 15 CIFAR-10-C corruptions at five severity levels. The main metric is relative accuracy drop: `(clean accuracy − corrupted accuracy) / clean accuracy`. The seen and unseen groups refer to noise+blur and weather+digital families relative to the `corrupt_aug` condition. Test images are never used for training.
 
-## Как запустить
+## Running the project
 
-Ноутбуки рассчитаны на Kaggle с включённым интернетом. Для `run_A`–`run_D` использовались две NVIDIA Tesla T4: по одному заданию на GPU.
+The notebooks are designed for Kaggle with internet access enabled. The `run_A`–`run_D` experiments used two NVIDIA Tesla T4 GPUs, with one job per GPU.
 
-Подключите датасеты [CIFAR-10 Python](https://www.kaggle.com/datasets/pankrzysiu/cifar10-python) и [CIFAR10-C](https://www.kaggle.com/datasets/faigarvn/cifar10-c). Если они не подключены, код скачает данные самостоятельно. Для короткой проверки выставьте `QUICK_TEST = True`, затем для полного эксперимента верните `False` и выполните Save & Run All. Результаты сохраняются в `results/*.json`; ноутбуки `run_A`–`run_D` также собирают ZIP-архив.
+Attach the [CIFAR-10 Python](https://www.kaggle.com/datasets/pankrzysiu/cifar10-python) and [CIFAR10-C](https://www.kaggle.com/datasets/faigarvn/cifar10-c) datasets. If they are not attached, the code downloads them automatically. Set `QUICK_TEST = True` for a short check, then switch it back to `False` and use Save & Run All for the full experiment. Results are saved to `results/*.json`; the `run_A`–`run_D` notebooks also create a ZIP archive.
 
-Чтобы пересобрать отчёты по готовым результатам локально:
+To regenerate the reports locally from the saved results:
 
 ```bash
 python -m pip install numpy scipy matplotlib
@@ -73,8 +75,8 @@ python -X utf8 scripts/analyze.py results analysis
 python -X utf8 scripts/analyze_v2.py results analysis
 ```
 
-Для обучения нужны PyTorch, torchvision и timm. Перед локальным запуском v2 задайте `CV_DATA_DIR` для хранения датасетов; модель и режим выбираются через `CV_MODEL` и `CV_CONDITION`. Версии библиотек пока не закреплены. Повторный запуск с тем же именем модели, режимом и seed перезаписывает соответствующий JSON.
+Training requires PyTorch, torchvision, and timm. Before running v2 locally, set `CV_DATA_DIR` to the dataset storage directory; select the model and condition through `CV_MODEL` and `CV_CONDITION`. Library versions are not pinned yet. Repeating a run with the same model, condition, and seed overwrites the corresponding JSON file.
 
-## Данные и источники
+## Data and sources
 
-CIFAR-10 — Krizhevsky (2009), CIFAR-10-C — Hendrycks и Dietterich (ICLR 2019). Датасеты не распространяются вместе с кодом. CIFAR-10-C загружается с [Zenodo](https://zenodo.org/records/2535967), предобученные веса — через `timm` из Hugging Face Hub.
+CIFAR-10 is credited to Krizhevsky (2009), and CIFAR-10-C to Hendrycks and Dietterich (ICLR 2019). The datasets are not redistributed with the code. CIFAR-10-C is downloaded from [Zenodo](https://zenodo.org/records/2535967), and pretrained weights are downloaded through `timm` from the Hugging Face Hub.
